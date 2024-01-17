@@ -8,17 +8,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.IO;
 
 public class Flip : MonoBehaviour
 {
     float ultimaVerificare;
     //float rataVerificare = 3f;
     // Intervalul de verificare
-    public int intervalVerificare; // DEFAULT: 3
+    int intervalVerificare; // DEFAULT: 3
 
     Rigidbody rigidBodyMasina;
 
-    void Start(){ rigidBodyMasina = this.GetComponent<Rigidbody>(); }
+    void Start()
+    {
+        StreamReader sr = new StreamReader(Application.dataPath + @"\" + "Settings/Flip.ini");
+        intervalVerificare = Int32.Parse(sr.ReadLine());
+        sr.Close();
+
+        rigidBodyMasina = this.GetComponent<Rigidbody>(); 
+    }
 
     // Indreapta masina
     void Indreapta()

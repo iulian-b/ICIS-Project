@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/CarAI.unity
-    guid: f39c07805b24e4032b7a41ec471879b1
+    path: Assets/Scenes/Menu.unity
+    guid: 1bda4139ca7f2b54fb92d0d0660bebea
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: 8f796628898708a4b807d674003b5023
   m_configObjects: {}

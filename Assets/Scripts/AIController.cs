@@ -1,20 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using System;
+//using System.IO;
+
 
 public class AIController : MonoBehaviour
 {
     [Header("Setarile Vehicului")]
-    public float SENSIBILITATE_DIRECTIE; //DEFAULT: 0.01
-    public float PREVIZIUNE; //DEFAULT: 30
-    public float CUPLU_MAX; //DEFAULT: 200
-    public float UNGHI_VIRARE_MAX; //DEFAULT: 60
-    public float CUPLU_FRANARE_MAX; //DEFAULT: 500
-    public float ACCELERATIE_CURBA_MAX; //DEFAULT: 20
-    public float FRANARE_CURBA_MAX; //DEFAULT: 10
-    public float THRESHOLD_VITEZA_ACCELRATIE; //DEFAULT: 20
-    public float THRESHOLD_VITEZA_FRANARE; //DEFAULT: 10
-    public float ANTIROLL; //DEFAULT: 5000
+    public float SENSIBILITATE_DIRECTIE; //DEFAULT: 0.01f
+    public float PREVIZIUNE; //DEFAULT: 30f
+    public float CUPLU_MAX; //DEFAULT: 200f
+    public float UNGHI_VIRARE_MAX; //DEFAULT: 60f
+    public float CUPLU_FRANARE_MAX; //DEFAULT: 500f
+    public float ACCELERATIE_CURBA_MAX; //DEFAULT: 20f
+    public float FRANARE_CURBA_MAX; //DEFAULT: 10f
+    public float THRESHOLD_VITEZA_ACCELRATIE; //DEFAULT: 20f
+    public float THRESHOLD_VITEZA_FRANARE; //DEFAULT: 10f
+    public float ANTIROLL; //DEFAULT: 5000f
     public int ID; //DEFAULT: NONE 
     public int FITNESS; //DEFAULT: 0
     //public TMPro.TextMeshProUGUI lblID = this.transform.position.y + 1.5f;
@@ -33,6 +36,8 @@ public class AIController : MonoBehaviour
 
     void Start()
     {
+        //LoadSettings(Application.dataPath + @"\" + "Settings/AIController.ini");
+
         listaMasini = this.GetComponentsInChildren<Drive>();
         Traseu = GameObject.FindGameObjectWithTag("circuit").GetComponent<Circuit>();
         Obiectiv = Traseu.wpList[wpCurent].transform.position;
@@ -149,5 +154,34 @@ public class AIController : MonoBehaviour
             target = circuit.waypoints[currentWP].transform.position;
         }*/
     }
+
+    /*void LoadSettings(string F)
+    {
+        List<string> settings = new List<string>();
+        StreamReader sr = new StreamReader(F);
+        string line;
+        line = sr.ReadLine();
+        settings.Add(line);
+
+        while (line != null)
+        {
+            //Debug.Log(line);
+            line = sr.ReadLine();
+            if (line != null) settings.Add(line);
+        }
+
+        sr.Close();
+
+        SENSIBILITATE_DIRECTIE = float.Parse(settings[0]);
+        PREVIZIUNE = float.Parse(settings[1]);
+        CUPLU_MAX = float.Parse(settings[2]);
+        UNGHI_VIRARE_MAX = float.Parse(settings[3]);
+        CUPLU_FRANARE_MAX = float.Parse(settings[4]);
+        ACCELERATIE_CURBA_MAX = float.Parse(settings[5]);
+        FRANARE_CURBA_MAX = float.Parse(settings[6]);
+        THRESHOLD_VITEZA_ACCELRATIE = float.Parse(settings[7]);
+        THRESHOLD_VITEZA_FRANARE = float.Parse(settings[8]);
+        ANTIROLL = float.Parse(settings[9]);
+    }*/
 }
 

@@ -11,18 +11,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.IO;
 
 public class AvoidDetector : MonoBehaviour
 {
-    public float EVITARE_TRASEU; // DEFAULT: 0
-    public float EVITARE_TIMP; // DEFAULT: 0
-    public float EVITARE_LUNGIME; // DEFAULT: 1
-    public float WANDER_DISTANTA; // DEFAULT: 4
+    public float EVITARE_TRASEU; // DEFAULT: 0f
+    public float EVITARE_TIMP; // DEFAULT: 0f
+    public float EVITARE_LUNGIME; // DEFAULT: 1f
+    public float WANDER_DISTANTA; // DEFAULT: 4f
 
     public bool MARSARIER = false;
     Rigidbody rigidBodyMasina;
 
-    void Start() { rigidBodyMasina = this.GetComponent<Rigidbody>(); }
+    void Start() 
+    {
+        LoadSettings(Application.dataPath + @"\" + "Settings/AvoidDetector.ini");
+        rigidBodyMasina = this.GetComponent<Rigidbody>(); 
+    }
 
     // Caz de exit: masina nu mai intalneste un obstacol
     void OnTriggerExit(Collider col)
@@ -53,5 +59,28 @@ public class AvoidDetector : MonoBehaviour
                 EVITARE_TRASEU = WANDER_DISTANTA * -Mathf.Sign(unghiMasinaObstacol);
             }
         }
+    }
+
+    void LoadSettings(string F)
+    {
+        List<string> settings = new List<string>();
+        StreamReader sr = new StreamReader(F);
+        string line;
+        line = sr.ReadLine();
+        settings.Add(line);
+
+        while (line != null)
+        {
+            //Debug.Log(line);
+            line = sr.ReadLine();
+            if (line != null) settings.Add(line);
+        }
+
+        sr.Close();
+
+        EVITARE_TRASEU = float.Parse(settings[0]);
+        EVITARE_TIMP = float.Parse(settings[1]);
+        EVITARE_LUNGIME = float.Parse(settings[2]);
+        WANDER_DISTANTA = float.Parse(settings[3]);
     }
 }
