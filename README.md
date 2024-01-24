@@ -1,4 +1,4 @@
-# ICS_UNITY
+# ICIS_UNITY
 Evolutionary algorithm project using Unity.
 
 ![Documentation](https://github.com/iulian-b/ICS-Project/blob/master/Documentation.pdf)
