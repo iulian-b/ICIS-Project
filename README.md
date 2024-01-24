@@ -1,6 +1,8 @@
 # ICS_UNITY
 Evolutionary algorithm project using Unity.
 
+![Documentation](https://github.com/iulian-b/ICS-Project/blob/master/Documentation.pdf)
+
 # Setup
 a. Download the source and import the root folder as a project into Unity version>2021.3 (earlier builds have not been tested)
 
